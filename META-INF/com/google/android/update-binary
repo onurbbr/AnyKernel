@@ -45,8 +45,8 @@ insert_line() {
 }
 ui_print "---------------------------------------------"
 ui_print "* AnyKernel3 by osm0sis @ xda-developers";
-ui_print "* TurKernel by @moonaru"
-ui_print "* Initializing "
+ui_print "* TurKernel by @moonaru (GitHub: onurbbr)"
+ui_print "* Initializing... "
 show_progress() { echo "progress $1 $2" >> $OUTFD; }
 file_getprop() { $BB grep "^$2=" "$1" | $BB cut -d= -f2-; }
 setup_mountpoint() {
@@ -419,14 +419,14 @@ if [ $? != 0 ]; then
   abort;
 fi;
 
-# Copy init scripts
+# Copy init scripts (Disabled for now)
 ui_print "* Patching ramdisk...";
 ui_print "* Patched ramdisk!";
 ui_print "* Flashing Ramdisk and Kernel..."
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
-insert_line /vendor/etc/init/hw/init.qcom.rc "init.turkernel.rc" after "import /vendor/etc/init/hw/init.qcom.usb.rc" "import /vendor/etc/init/hw/init.turkernel.rc";
-$BB cp -f $AKHOME/init/init.turkernel.rc /vendor/etc/init/hw/init.turkernel.rc;
-$BB chmod 644 /vendor/etc/init/hw/init.turkernel.rc
+# $BB mount -o rw,remount -t auto /vendor 2>/dev/null;
+# insert_line /vendor/etc/init/hw/init.qcom.rc "init.turkernel.rc" after "import /vendor/etc/init/hw/init.qcom.usb.rc" "import /vendor/etc/init/hw/init.turkernel.rc";
+# $BB cp -f $AKHOME/init/init.turkernel.rc /vendor/etc/init/hw/init.turkernel.rc;
+# $BB chmod 644 /vendor/etc/init/hw/init.turkernel.rc
 
 do_modules;
 
